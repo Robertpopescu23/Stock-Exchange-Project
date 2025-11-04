@@ -4,6 +4,7 @@ import org.example.model_layer.Company;
 import org.example.model_layer.ShareOffer;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
@@ -33,16 +34,28 @@ public class Buyer implements Runnable {
                     continue;
                 }
 
-                // Decide how many shares to buy and max price
-                int quantity = random.nextInt(10) + 1; // buy 1-10 shares
-                double maxPrice = company.getCurrentPrice() * (1 + random.nextDouble() * 0.05); // up to +5%
+                // Get list of available sellers for that company
+                List<ShareOffer> offers = engine.getSellOffersForCompany(company);
 
-                double totalCost = quantity * maxPrice;
-                if (totalCost <= balance) {
-                    placeBuyOrder(company, quantity, maxPrice);
+                if(!offers.isEmpty()) {
+                    //Choose cheapeast offer
+                    ShareOffer bestOffer = offers.get(0);
+                    int quantity = Math.min(bestOffer.getQuantity(), random.nextInt(5) + 1);
+                    boolean success = engine.executeManualTrade(this, bestOffer, quantity);
+
+                    if(success) {
+                        System.out.printf("Buyer %s manually bought %d of %s from %s @ %.2f%n",
+                                id, quantity, company.getSymbol(), bestOffer.getClientId(), bestOffer.getPricePerShare());
+                    }
+
+                } else {
+                    // No available sellers for this company
+                    System.out.printf("Buyer %s found no offers available for company %s%n",
+                            id, company.getSymbol());
+                    Thread.sleep(1000);
                 }
 
-                Thread.sleep(1000 + random.nextInt(2000)); // wait 1-3 seconds
+                Thread.sleep(1500 + random.nextInt(2000));
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
                 break;
