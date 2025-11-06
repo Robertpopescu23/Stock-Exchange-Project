@@ -3,6 +3,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
                              http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
@@ -16,6 +17,7 @@
     </properties>
 
     <dependencies>
+        <!-- Testing -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
@@ -29,28 +31,21 @@
             <scope>test</scope>
         </dependency>
 
-<!--    JavaFX UI    -->
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-controls</artifactId>
-            <version>23</version>
-        </dependency>
-
-<!--   Logging    -->
+        <!-- Logging -->
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
             <version>1.5.6</version>
         </dependency>
 
-<!--    JSON Serialization   -->
+        <!-- JSON -->
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
             <version>2.11.0</version>
         </dependency>
 
-<!--    MongoDB Java Driver    -->
+        <!-- MongoDB -->
         <dependency>
             <groupId>org.mongodb</groupId>
             <artifactId>mongodb-driver-sync</artifactId>
@@ -58,22 +53,10 @@
         </dependency>
     </dependencies>
 
-
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.2.5</version>
-                <configuration>
-                    <useModulePath>false</useModulePath>
-<!--        Set encoding for surefire => logs and JSON handles UTF-8 encoding properly        -->
-                    <systemPropertyVariables>
-                        <file.encoding>UTF-8</file.encoding>
-                    </systemPropertyVariables>
-                </configuration>
-            </plugin>
 
+            <!-- Compiler -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -81,8 +64,37 @@
                 <configuration>
                     <source>21</source>
                     <target>21</target>
+                    <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
+
+            <!-- Surefire -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.2.5</version>
+                <configuration>
+                    <useModulePath>false</useModulePath>
+                </configuration>
+            </plugin>
+
+            <!-- Exec: run main.
+                 Use <arguments> to pass JVM system properties and keep compatibility. -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <mainClass>org.example.Main</mainClass>
+                    <!-- Pass JVM system properties (format: -Dkey=value) -->
+                    <arguments>
+                        <argument>-Dhttps.protocols=TLSv1.2</argument>
+                        <argument>-Dfile.encoding=UTF-8</argument>
+                    </arguments>
+                </configuration>
+            </plugin>
+
         </plugins>
     </build>
+
 </project>

@@ -7,15 +7,14 @@
     <list default="true" id="6b02f767-c516-42fd-8e7d-fe59c494cea4" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/../.idea/Desktop.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/agents/Buyers.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/agents/Sellers.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/engine/Exchange.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/model_layer/Company.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/model_layer/Company.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/model_layer/ShareOrder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/model_layer/Transaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/model_layer/Transaction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/ui/ExchangeApp.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/ui/ExchangeController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/engine/Buyer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/engine/Buyer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/engine/TradingEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/engine/TradingEngine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/model_layer/ShareOffer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/model_layer/ShareOffer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/ExchangeTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/MainTest.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,12 +47,15 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.TestAtlas.executor&quot;: &quot;Run&quot;,
     &quot;JUnit.ExchangeTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MainTest.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/popescurobert/Desktop/StockExchange&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -62,11 +64,12 @@
     &quot;onboarding.tips.debug.path&quot;: &quot;/Users/popescurobert/Desktop/StockExchange/src/main/java/org/example/Main.java&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.1150748&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.projectsettings.compiler.javacompiler&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="JUnit.MainTest">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.example.Main" />
       <module name="StockExchange" />
@@ -76,6 +79,13 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestAtlas" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="TestAtlas" />
+      <module name="StockExchange" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -112,8 +122,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.MainTest" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.TestAtlas" />
+        <item itemvalue="JUnit.MainTest" />
         <item itemvalue="JUnit.ExchangeTest" />
       </list>
     </recent_temporary>
@@ -127,7 +138,14 @@
       <option name="presentableId" value="Default" />
       <updated>1761242488958</updated>
       <workItem from="1761242490827" duration="5638000" />
-      <workItem from="1761318591700" duration="5893000" />
+      <workItem from="1761318591700" duration="6553000" />
+      <workItem from="1761564649378" duration="20992000" />
+      <workItem from="1761758040662" duration="1512000" />
+      <workItem from="1762193949380" duration="882000" />
+      <workItem from="1762251492333" duration="12000" />
+      <workItem from="1762254720470" duration="4559000" />
+      <workItem from="1762324078088" duration="2765000" />
+      <workItem from="1762330106215" duration="1920000" />
     </task>
     <servers />
   </component>

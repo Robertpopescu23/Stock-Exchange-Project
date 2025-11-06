@@ -1,74 +1,75 @@
-# Stock Exchange Simulation
+#  Stock Exchange Simulation
 
-## Overview
-The **Stock Exchange** project simulates the trading of shares belonging to various companies. Buyers and sellers interact through offers and requests, and transactions occur when prices and quantities match. The system provides full visibility of offers, requests, and transaction history, and allows participants to modify their offers or requests if no ongoing transactions exist for the relevant shares.
+##  Overview
+The **Stock Exchange Simulation** is a multithreaded Java project that models how a financial market operates.  
+It simulates **buyers** and **sellers** trading shares of various companies through a centralized **Trading Engine**.
 
-This project is designed in Java and can be extended into a distributed system with clients acting as buyers and sellers. Currently, buyers and sellers are simulated using Java threads and algorithms that operate on shared exchange information.
+Each participant operates concurrently using **Java threads**, interacting via a **thread-safe order queue**.  
+The system supports **manual buyer selection**, meaning buyers can actively choose the best available seller offer instead of simply accepting the first one.
 
----
-
-## Features
-- Sellers can offer a number of shares at a specified price.
-- Buyers can request a number of shares at a specified price.
-- Transactions occur automatically when a matching offer and request exist:
-    - Number of shares traded: `n = min(offer, request)`
-- Full visibility of market information:
-    - Active offers
-    - Active requests
-    - Transaction history
-- Offers and requests can be modified if shares are not currently involved in a transaction.
+The simulation maintains:
+- All active buy and sell offers
+- A complete transaction history
+- Company price updates in real time
+- Persistent transaction records in **MongoDB**
 
 ---
 
-## Technology Stack
-The project uses **Java 21** and leverages the following dependencies from Maven:
+##  Features
+ **Concurrent Trading Simulation** – Buyers and sellers run in parallel threads.  
+ **Automatic Order Matching** – Engine matches compatible buy/sell offers based on price and company.  
+ **Manual Buyer Selection** – Buyers can inspect the list of available seller offers and choose the best price manually.  
+ **Fair Pricing** – Transactions occur at an average or agreed price between buyer and seller.  
+ **Data Persistence** – Each completed transaction is automatically stored in a **MongoDB** collection.  
+ **Thread-Safe Execution** – Concurrency protected by **ReentrantLock** and **BlockingQueue**.  
+ **Logging and Monitoring** – Logback used for runtime logging and monitoring of trades.
 
-- **JUnit 5** – for unit testing
-  ```xml
-  <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-api</artifactId>
-      <version>5.10.2</version>
-      <scope>test</scope>
-  </dependency>
-  <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-engine</artifactId>
-      <version>5.10.2</version>
-      <scope>test</scope>
-  </dependency>
-  ```
+---
 
-- **JavaFX** – for graphical user interface
+##  Technology Stack
+
+| Component | Description |
+|------------|--------------|
+| **Language** | Java 21 |
+| **Build Tool** | Maven |
+| **Database** | MongoDB |
+| **Logging** | Logback |
+| **JSON Handling** | Gson |
+| **Testing** | JUnit 5 |
+
+###  Dependencies
 ```xml
-  <dependency>
-  <groupId>org.openjfx</groupId>
-  <artifactId>javafx-controls</artifactId>
-  <version>23</version>
-  </dependency>
-  ```
+<!-- JUnit 5 -->
+<dependency>
+    <groupId>org.junit.jupiter</groupId>
+    <artifactId>junit-jupiter-api</artifactId>
+    <version>5.10.2</version>
+    <scope>test</scope>
+</dependency>
+<dependency>
+    <groupId>org.junit.jupiter</groupId>
+    <artifactId>junit-jupiter-engine</artifactId>
+    <version>5.10.2</version>
+    <scope>test</scope>
+</dependency>
 
-- **Logback** – for logging
-```xml
+<!-- Logback -->
 <dependency>
     <groupId>ch.qos.logback</groupId>
     <artifactId>logback-classic</artifactId>
     <version>1.5.6</version>
 </dependency>
-  ```
-- **Gson** – for JSON serialization and deserialization
-```xml
+
+<!-- Gson -->
 <dependency>
     <groupId>com.google.code.gson</groupId>
     <artifactId>gson</artifactId>
     <version>2.11.0</version>
 </dependency>
-```
-- **MongoDB Java Driver** – for database integration
-```xml
+
+<!-- MongoDB Java Driver -->
 <dependency>
     <groupId>org.mongodb</groupId>
     <artifactId>mongodb-driver-sync</artifactId>
     <version>4.10.2</version>
 </dependency>
-```

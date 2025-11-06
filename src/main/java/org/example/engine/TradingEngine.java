@@ -16,11 +16,23 @@ public class TradingEngine implements Runnable {
 
     private final DatabaseManager dbManager;
     private final BlockingQueue<ShareOffer> orderQueue = new LinkedBlockingQueue<>();
+
+    // Hold all incoming buy/sell orders
+
+    // List of active buy orders (sorted by descending price)
     private final List<ShareOffer> buyOrders = new ArrayList<>();
+
+    // List of active sell orders(sorted by ascending price)
     private final List<ShareOffer> sellOrders = new ArrayList<>();
+
+    // Record of all complete transactions
     private final List<Transaction> transactionHistory = new ArrayList<>();
     private final List<Company> companies;
+
+    // Registered buyers participating(indexed by id)
     private final Map<String, Buyer> buyers = new HashMap<>();
+
+    // Registered selleres participating
     private final Map<String, Seller> sellers = new HashMap<>();
     private final ReentrantLock lock = new ReentrantLock();
     private final Random random = new Random();
@@ -100,7 +112,6 @@ public class TradingEngine implements Runnable {
         orderQueue.offer(stopSignal);
     }
 
-    // --- helper sorts (no Comparator, no streams) ---
     private void sortBuyOrdersDescendingByPrice() {
         // Simple selection-sort style: highest price first
         for (int i = 0; i < buyOrders.size() - 1; i++) {
@@ -207,7 +218,6 @@ public class TradingEngine implements Runnable {
         }
     }
 
-    // ---- New: returns a copy of current sell offers for a company, sorted ascending by price (cheapest first)
     public List<ShareOffer> getSellOffersForCompany(Company company) {
         lock.lock();
         try {
@@ -244,7 +254,6 @@ public class TradingEngine implements Runnable {
         }
     }
 
-    // ---- New: execute a manual trade between a buyer and a chosen sell offer
     public boolean executeManualTrade(Buyer buyer, ShareOffer sellOffer, int quantity) {
         lock.lock();
         try {
@@ -325,7 +334,6 @@ public class TradingEngine implements Runnable {
         }
     }
 
-    // ---- Accessors ----
     public List<Transaction> getTransactionHistory() {
         return Collections.unmodifiableList(transactionHistory);
     }

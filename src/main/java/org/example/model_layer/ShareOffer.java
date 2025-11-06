@@ -47,5 +47,5 @@ public class ShareOffer {
                 clientId);
     }
     public boolean isBuy() {return isBuyOffer;}
-    public boolean isSell() {return !isBuyOffer;}
+//    public boolean isSell() {return !isBuyOffer;}
 }
