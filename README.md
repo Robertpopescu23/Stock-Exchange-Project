@@ -7,7 +7,7 @@ It simulates **buyers** and **sellers** trading shares of various companies thro
 Each participant operates concurrently using **Java threads**, interacting via a **thread-safe order queue**.  
 The system supports **manual buyer selection**, meaning buyers can actively choose the best available seller offer instead of simply accepting the first one.
 
-The simulation maintains:
+The simulation maintaigit ns:
 - All active buy and sell offers
 - A complete transaction history
 - Company price updates in real time
