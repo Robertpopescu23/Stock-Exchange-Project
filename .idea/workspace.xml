@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="6b02f767-c516-42fd-8e7d-fe59c494cea4" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/../.idea/Desktop.iml" afterDir="false" />
+<<<<<<< HEAD
       <change afterPath="$PROJECT_DIR$/src/main/java/org/example/engine/DatabaseManager.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/test/java/TestAtlas.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
@@ -16,6 +17,8 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/model_layer/ShareOffer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/model_layer/ShareOffer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/org/example/ExchangeTest.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/org/example/MainTest.java" beforeDir="false" />
+=======
+>>>>>>> 6177b26 (Final Project commit. READ.md done)
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -147,6 +150,7 @@
       <workItem from="1762254720470" duration="4559000" />
       <workItem from="1762324078088" duration="2765000" />
       <workItem from="1762330106215" duration="1920000" />
+      <workItem from="1762433132840" duration="344000" />
     </task>
     <servers />
   </component>
